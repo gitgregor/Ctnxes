@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import SortingTable from './components/tables/SortingTable'
+import SplinePlotBandsChart from './components/others/SplinePlotBandsChart'
+import KitchenSink from './components/tables/kittchen-sink/Kitchen-sink.component'
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="App">
+        <SortingTable className="component" />
+        <SplinePlotBandsChart />
+        <KitchenSink />
+      </div>
     </div>
   );
 }
