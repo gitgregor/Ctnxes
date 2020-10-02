@@ -2,6 +2,7 @@ import React from 'react';
 import SortingTable from './components/tables/SortingTable'
 import SplinePlotBandsChart from './components/others/SplinePlotBandsChart'
 import KitchenSink from './components/tables/kittchen-sink/Kitchen-sink.component'
+import Cntx from './CNTX/contex'
 
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
         <SortingTable className="component" />
         <SplinePlotBandsChart />
         <KitchenSink />
+        <Cntx />
       </div>
     </div>
   );
