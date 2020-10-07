@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useTable, useRowSelect } from "react-table";
 
-import makeData from "../makeData";
+import makeData from "./makeData";
+import  '../../PRJ/styles/main.css'
 
 const Styles = styled.div`
   padding: 1rem;
@@ -15,7 +16,8 @@ const Styles = styled.div`
           border-bottom: 0;
         }
       }
-    }
+    },
+   
     th,
     td {
       margin: 0;
@@ -28,6 +30,13 @@ const Styles = styled.div`
     }
   }
 `;
+
+// const Styles1 = styled.tr`
+// .blue{
+//     background-color: blue;
+// }
+// `
+
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -47,13 +56,25 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
+// const addActiveClass = (e)=>{
+//     if(e.target.classList.contains("active")){
+//         //I wanna to add active class to e.target
+//     }else{
+//         //I wanna to remove active class from e.target
+//         //I wanna to do something like e.target.classList.removeClass("atcive");
+//     }
+//  }
+
+
 function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
-  const [selectedRowId, setSelectedRowId] = useState(null);
-  const selectedRowIds = [];
-  if (selectedRowId) {
-    selectedRowIds.push(selectedRowId);
-  }
+    // Use the state and functions returned from useTable to build your UI
+    const [selectedRowId, setSelectedRowId] = useState(null);
+    const selectedRowIds = [];
+    if (selectedRowId) {
+        selectedRowIds.push(selectedRowId);
+    }
+    //   const [estate, setEstate] = useState('')
+    // const [a, setA] = useState('')
 
   const {
     getTableProps,
@@ -92,7 +113,9 @@ function Table({ columns, data }) {
           Cell: ({ row }) => (
             <div>
               <IndeterminateCheckbox
-                onClick={() => setSelectedRowId(row.id)}
+                // onClick={addActiveClass}
+                // onClick={() => setSelectedRowId(row.id)}
+                // onClick={(e) => setSelectedRowId(e.target.parentElement)}
                 {...row.getToggleRowSelectedProps()}
               />
             </div>
@@ -104,6 +127,13 @@ function Table({ columns, data }) {
   );
 
   console.log("Some issue - selectedFlatRows prints twice..", selectedFlatRows);
+
+const handleClass = e =>{
+    e.preventDefault()
+    e.target.parentElement.classList.add("blue")
+// setA("green")
+}
+
 
   // Render the UI for your table
   return (
@@ -122,10 +152,10 @@ function Table({ columns, data }) {
           {rows.slice(0, 10).map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr onClick={handleClass} {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td  {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
               </tr>
@@ -194,7 +224,7 @@ function App() {
 
   return (
     <Styles>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data}  />
     </Styles>
   );
 }
